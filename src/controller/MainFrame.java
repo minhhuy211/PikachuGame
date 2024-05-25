@@ -19,12 +19,12 @@ import javax.swing.border.TitledBorder;
 
 public class MainFrame extends JFrame implements ActionListener, Runnable {
 	
-	 private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	
-	private int MAX_TIME = 500;
+	public static int MAX_TIME = 500;
 	public int time = MAX_TIME;
-	private int row = 12;
-	private int col = 12;
+	private int row = 10;
+	private int col = 10;
 	private int width = 900;
 	private int height = 700;
 	private ButtonEvent graphicsPanel;
@@ -180,6 +180,34 @@ public class MainFrame extends JFrame implements ActionListener, Runnable {
 		this.resume = resume;
 	}
 
+	public int getRow() {
+		return row;
+	}
+
+	public void setRow(int row) {
+		this.row = row;
+	}
+
+	public int getCol() {
+		return col;
+	}
+
+	public void setCol(int col) {
+		this.col = col;
+	}
+
+	public static void setMAX_TIME(int mAX_TIME) {
+		MAX_TIME = mAX_TIME;
+	}
+	
+	public int getTotalItem() {
+		return this.col * this.row;
+	}
+	
+	public int computeScore(int item, int timeLeft) {
+		return (getTotalItem() - item) * 10 + (this.time) * 15;
+		
+	}
 	
 
 }
