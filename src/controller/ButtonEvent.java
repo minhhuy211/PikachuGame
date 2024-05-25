@@ -127,9 +127,10 @@ public class ButtonEvent extends JPanel implements ActionListener {
 			p2 = null;
 			System.out.println("Done");
 			if (item == 0) {
-				frame.showDialogNewGame("You are Winer!\nDo you want play again?", "Win", 1);
+				frame.showDialogNewGame("You are Winer!\nYour final score: " + frame.computeScore(item, frame.time) + "\nDo you want play again?", "Win", 1);
 			}
-		}
-
+		}		
 	}
+	
+	
 }
