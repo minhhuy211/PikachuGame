@@ -28,11 +28,11 @@ public class ButtonEvent extends JPanel implements ActionListener {
 	private JButton[][] btn;
 	private Controller algorithm;
 	private Color backGroundColor = Color.lightGray;
-	private MainFrame frame;
+	private MainPanel frame;
 	private PointLine line;
 	private int item;
 
-	public ButtonEvent(MainFrame frame, int row, int col) {
+	public ButtonEvent(MainPanel frame, int row, int col) {
 		this.frame = frame;
 		this.row = row + 2;
 		this.col = col + 2;

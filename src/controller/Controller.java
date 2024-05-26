@@ -1,20 +1,17 @@
 package controller;
 
-import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Random;
-
-import java.util.Collections;
 
 public class Controller {
 	private int row;
 	private int col;
 	private int[][] matrix;
 	private ArrayList<ArrayList<Point>> paths = new ArrayList<ArrayList<Point>>();
-	MainFrame frame;
+	MainPanel frame;
 
-	public Controller(MainFrame frame, int row, int col) {
+	public Controller(MainPanel frame, int row, int col) {
 		this.frame = frame;
 		this.row = row;
 		this.col = col;
