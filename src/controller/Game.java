@@ -1,16 +1,16 @@
 package controller;
 
+import javax.sound.sampled.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import javax.sound.sampled.*;
 
 public class Game {
-	MainFrame frame;
-	MenuFrame menu;
+	MainPanel frame;
+	MenuPanel menu;
 	public Game() {
-		menu = new MenuFrame();
+		menu = new MenuPanel();
 		menu.btnNewGame.addActionListener(new ActionListener() {
 			
 			@Override
@@ -30,7 +30,7 @@ public class Game {
 	}
 	
 	private void newGame() {
-		this.frame = new MainFrame();
+		this.frame = new MainPanel();
 		MyTimeCount timeCount = new MyTimeCount();
 		timeCount.start();
 		new Thread(frame).start();		
