@@ -9,6 +9,7 @@ import javax.swing.*;
 public class Main {
 	static MainPanel mainPanel;
 	static MenuPanel menuPanel;
+	static LevelPanel levelPanel;
 	static JFrame frame;
 	static CardLayout cardLayout;
 	static JPanel cardPanel;
@@ -17,14 +18,15 @@ public class Main {
 		frame = new JFrame("Game Menu");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-
 		cardLayout = new CardLayout();
 		cardPanel = new JPanel(cardLayout);
 
 		menuPanel = new MenuPanel();
 		mainPanel = new MainPanel();
+		levelPanel = new LevelPanel();
 
 		cardPanel.add(menuPanel, "MenuPanel");
+		cardPanel.add(levelPanel, "LevelPanel");
 		cardPanel.add(mainPanel, "MainPanel");
 
 		frame.add(cardPanel);
@@ -32,7 +34,6 @@ public class Main {
 		frame.pack();
 		// Ensure the MenuPanel is shown first
 		cardLayout.show(cardPanel, "MenuPanel");
-
 
 		menuPanel.btnNewGame.addActionListener(e -> {
 
@@ -42,9 +43,12 @@ public class Main {
 
 			System.exit(0);
 		});
+		menuPanel.btnLevel.addActionListener(e -> {
+			cardLayout.show(cardPanel, "LevelPanel");
+		});
 	}
 
-	private void showMainFrame() {
+	public void showMainFrame() {
 		cardLayout.show(cardPanel, "MainPanel");
 		new Thread(mainPanel).start();
 		MyTimeCount timeCount = new MyTimeCount();
@@ -54,11 +58,11 @@ public class Main {
 	public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		new Main();
 
-		File file = new File("GamePikachu.wav");
-		AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
-		Clip clip = AudioSystem.getClip();
-		clip.open(audioStream);
-		clip.start();
+		// File file = new File("GamePikachu.wav");
+		// AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+		// Clip clip = AudioSystem.getClip();
+		// clip.open(audioStream);
+		// clip.start();
 	}
 
 	class MyTimeCount extends Thread {

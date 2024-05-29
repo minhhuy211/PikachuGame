@@ -104,6 +104,7 @@ public class MainPanel extends JPanel implements ActionListener, Runnable {
 		mainPanel.validate();
 		mainPanel.setVisible(true);
 		lbScore.setText("0");
+
 	}
 
 	public void showDialogNewGame(String message, String title, int t) {

@@ -6,14 +6,15 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class MenuPanel extends JPanel {
-	JButton btnNewGame, btnExit, btnGuide;
+	JButton btnNewGame, btnExit, btnGuide, btnLevel;
 	private Image backgroundImage;
 
 	public MenuPanel() {
 		setLayout(new BorderLayout());
 
 		try {
-			backgroundImage = ImageIO.read(Objects.requireNonNull(getClass().getResource("/backgroundImage/anhGame.jpg")));
+			backgroundImage = ImageIO
+					.read(Objects.requireNonNull(getClass().getResource("/backgroundImage/anhGame.jpg")));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -21,8 +22,6 @@ public class MenuPanel extends JPanel {
 		this.setPreferredSize(new Dimension(650, 400));
 		add(createComponents(), BorderLayout.CENTER);
 	}
-
-
 
 	private JPanel createComponents() {
 		// Custom JPanel that paints the background image
@@ -58,11 +57,15 @@ public class MenuPanel extends JPanel {
 		panel.add(lbl, c);
 
 		// Configure button panel
-		JPanel buttonPanel = new JPanel(new GridLayout(3, 1, 5, 5));
+		JPanel buttonPanel = new JPanel(new GridLayout(4, 1, 5, 5));
 		btnNewGame = new JButton("New Game");
 		btnNewGame.setFont(new Font("Roboto", Font.BOLD, 20));
 		btnNewGame.setPreferredSize(new Dimension(150, 50));
 		buttonPanel.add(btnNewGame);
+		btnLevel = new JButton("Level");
+		btnLevel.setFont(new Font("Roboto", Font.BOLD, 20));
+		btnLevel.setPreferredSize(new Dimension(150, 50));
+		buttonPanel.add(btnLevel);
 		btnGuide = new JButton("Introduction");
 		btnGuide.setFont(new Font("Roboto", Font.BOLD, 20));
 		btnGuide.setPreferredSize(new Dimension(150, 50));
