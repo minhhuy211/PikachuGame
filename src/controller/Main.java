@@ -9,26 +9,25 @@ import javax.swing.*;
 public class Main {
 	static MainPanel mainPanel;
 	static MenuPanel menuPanel;
-	static IntroductionPanel introductionPanel;
+	static LevelPanel levelPanel;
 	static JFrame frame;
 	static CardLayout cardLayout;
 	static JPanel cardPanel;
 
 	public Main() {
-		frame = new JFrame("Game Pikachu");
+		frame = new JFrame("Game Menu");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 
 		cardLayout = new CardLayout();
 		cardPanel = new JPanel(cardLayout);
 
 		menuPanel = new MenuPanel();
 		mainPanel = new MainPanel();
-		introductionPanel = new IntroductionPanel();
+		levelPanel = new LevelPanel();
 
 		cardPanel.add(menuPanel, "MenuPanel");
+		cardPanel.add(levelPanel, "LevelPanel");
 		cardPanel.add(mainPanel, "MainPanel");
-		cardPanel.add(introductionPanel, "IntroductionPanel");
 
 		frame.add(cardPanel);
 		frame.setVisible(true);
@@ -36,35 +35,20 @@ public class Main {
 		// Ensure the MenuPanel is shown first
 		cardLayout.show(cardPanel, "MenuPanel");
 
-
 		menuPanel.btnNewGame.addActionListener(e -> {
 
 			showMainFrame();
-		});
-		menuPanel.btnGuide.addActionListener(e -> {
-
-			showPanelGuide();
 		});
 		menuPanel.btnExit.addActionListener(e -> {
 
 			System.exit(0);
 		});
-		introductionPanel.getExit().addActionListener(e -> {
-			cardLayout.show(cardPanel, "MenuPanel");
+		menuPanel.btnLevel.addActionListener(e -> {
+			cardLayout.show(cardPanel, "LevelPanel");
 		});
-		introductionPanel.getExit1().addActionListener(e -> {
-			cardLayout.show(cardPanel, "MenuPanel");
-		});
-
-
 	}
 
-	private void showPanelGuide() {
-		 cardLayout.show(cardPanel, "IntroductionPanel");
-
-	}
-
-	private void showMainFrame() {
+	public void showMainFrame() {
 		cardLayout.show(cardPanel, "MainPanel");
 		new Thread(mainPanel).start();
 		MyTimeCount timeCount = new MyTimeCount();
@@ -74,11 +58,11 @@ public class Main {
 	public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		new Main();
 
-		File file = new File("GamePikachu.wav");
-		AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
-		Clip clip = AudioSystem.getClip();
-		clip.open(audioStream);
-		clip.start();
+		// File file = new File("GamePikachu.wav");
+		// AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+		// Clip clip = AudioSystem.getClip();
+		// clip.open(audioStream);
+		// clip.start();
 	}
 
 	class MyTimeCount extends Thread {
