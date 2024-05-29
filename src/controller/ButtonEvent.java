@@ -106,31 +106,76 @@ public class ButtonEvent extends JPanel implements ActionListener {
 			btn[p1.x][p1.y].setBorder(new LineBorder(Color.red));
 		} else {
 			p2 = new Point(x, y);
-			System.out.println("(" + p1.x + "," + p1.y + ") --> (" + p2.x + ";" + p2.y + ")");
-			line = algorithm.checkTwoPoint(p1, p2);
-
-			if (line != null) {
-				System.out.println("line != null");
-				algorithm.getMatrix()[p1.x][p1.y] = 0;
-				algorithm.getMatrix()[p2.x][p2.y] = 0;
-				algorithm.showMatrix();
-				execute(p1, p2);
-				line = null;
-				score += 10;
-				item--;
-				frame.time++;
-				frame.lbScore.setText(score + "");
-			}
-
-			btn[p1.x][p1.y].setBorder(null);
+			
+			// Tính năng tính điểm và thông báo điểm sau màn chơi
+			scoreFeatureHandler(p1, p2);
+			
+			
 			p1 = null;
 			p2 = null;
-			System.out.println("Done");
-			if (item == 0) {
-				frame.showDialogNewGame("You are Winer!\nYour final score: " + frame.computeScore(item, frame.time) + "\nDo you want play again?", "Win", 1);
-			}
-		}		
+		}
 	}
 	
+	private void set2PointNull(Point p1, Point p2) {
+		btn[p1.x][p1.y].setBorder(null);
+		p1 = null;
+		p2 = null;
+	}
 	
+	private void setScoreLabel(int score) {
+		line = null;
+		frame.lbScore.setText(score + "");
+	}
+	
+	private void decreaseItem() {
+		item--;
+	}
+	
+	private void increaseScore() {
+		algorithm.getMatrix()[p1.x][p1.y] = 0;
+		algorithm.getMatrix()[p2.x][p2.y] = 0;
+		score += 10;
+	}
+	
+	private boolean checkEndGame() {
+		return item == 0;
+	}
+	
+	private int getFinalScore() {
+		return frame.calculateScore(item, frame.time);
+	}
+	
+	private void endGame(int score) {
+		frame.showDialogNewGame("You are Winer!\nYour final score: " + score + "\nDo you want play again?", "Win", 1);
+	}
+	
+	private void scoreFeatureHandler(Point p1, Point p2) {
+		//1.Hệ thống kiểm tra nếu hai hình ảnh (hai đối tượng Point) 
+		//	được chọn giống nhau và có thể kết nối:
+		line = algorithm.checkTwoPoint(p1, p2);
+		//1.1. Nếu có thể kết nối được
+		if (line != null) {
+			
+			//1.1.1. Điểm số của người chơi tăng l
+			increaseScore();
+			//1.1.2. Giảm số lượng ảnh trong màn chơi
+			decreaseItem();
+			//1.1.3. Hai hình ảnh (hai đối tượng Point) được xóa khỏi màn chơi.
+			execute(p1, p2);
+			//1.1.4. Hệ thống cập nhật và hiện thị điểm số lên giao diện MainPanel
+			setScoreLabel(score);
+		}
+		//1.2 Nếu không kế nối được
+		//1.2.1. Gán giá trị null có hai đối tượng Point nhận vào.
+		set2PointNull(p1, p2);
+		
+		//2. Kiểm tra điều kiện kết thúc màn chơi (Số hình ảnh đã hết):
+		if (checkEndGame()) { 
+			//2.1. Hệ thống tính điểm dựa trên thời gian còn lại.
+			int finalScore = getFinalScore();
+			//2.2. Hệ thống hiển thị màn hình thông báo màn chơi kết thúc 
+			// 		và tổng điểm của người chơi. 
+			endGame(finalScore);
+		}
+	}
 }

@@ -21,8 +21,8 @@ public class MainPanel extends JPanel implements ActionListener, Runnable {
 
 	public static int MAX_TIME = 500;
 	public int time = MAX_TIME;
-	private int row = 10;
-	private int col = 10;
+	private int row = 4;
+	private int col = 4;
 	private int width = 900;
 	private int height = 700;
 	private ButtonEvent graphicsPanel;
@@ -104,7 +104,6 @@ public class MainPanel extends JPanel implements ActionListener, Runnable {
 		mainPanel.validate();
 		mainPanel.setVisible(true);
 		lbScore.setText("0");
-
 	}
 
 	public void showDialogNewGame(String message, String title, int t) {
@@ -191,7 +190,9 @@ public class MainPanel extends JPanel implements ActionListener, Runnable {
 		return this.col * this.row;
 	}
 
-	public int computeScore(int item, int timeLeft) {
-		return (getTotalItem() - item) * 10 + (this.time) * 15;
+	public int calculateScore(int item, int timeLeft) {
+		return  item * 10 + this.time * 15;
 	}
+	
+	
 }
