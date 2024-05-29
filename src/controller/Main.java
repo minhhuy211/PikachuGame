@@ -10,6 +10,7 @@ public class Main {
 	static MainPanel mainPanel;
 	static MenuPanel menuPanel;
 	static LevelPanel levelPanel;
+	static IntroductionPanel introductionPanel;
 	static JFrame frame;
 	static CardLayout cardLayout;
 	static JPanel cardPanel;
@@ -24,10 +25,12 @@ public class Main {
 		menuPanel = new MenuPanel();
 		mainPanel = new MainPanel();
 		levelPanel = new LevelPanel();
+		introductionPanel = new IntroductionPanel();
 
 		cardPanel.add(menuPanel, "MenuPanel");
 		cardPanel.add(levelPanel, "LevelPanel");
 		cardPanel.add(mainPanel, "MainPanel");
+		cardPanel.add(introductionPanel, "IntroductionPanel");
 
 		frame.add(cardPanel);
 		frame.setVisible(true);
@@ -46,6 +49,16 @@ public class Main {
 		menuPanel.btnLevel.addActionListener(e -> {
 			cardLayout.show(cardPanel, "LevelPanel");
 		});
+		menuPanel.btnGuide.addActionListener(e -> {
+			cardLayout.show(cardPanel, "IntroductionPanel");
+		});
+		introductionPanel.getExit().addActionListener(e -> {
+			cardLayout.show(cardPanel, "MenuPanel");
+		});
+		introductionPanel.getExit1().addActionListener(e -> {
+			cardLayout.show(cardPanel, "MenuPanel");
+		});
+
 	}
 
 	public void showMainFrame() {

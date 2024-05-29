@@ -115,6 +115,13 @@ public class IntroductionPanel extends JPanel {
         });
 
         // Load content from file and image
+        
+//        String projectPath = System.getProperty("user.dir");
+
+//        loadContentFromFile(projectPath + "/src/guide/guidePikachu.txt");
+//        loadImage(projectPath + "/src/image/picture1.PNG");
+//        loadImage(projectPath + "/src/image/picture2.PNG");
+
         loadContentFromFile("guide/guidePikachu.txt");
         loadImage("image/picture1.PNG");
         loadImage("image/picture2.PNG");
@@ -130,9 +137,9 @@ public class IntroductionPanel extends JPanel {
             boolean isFirstStep = true;
 
             while ((line = reader.readLine()) != null) {
-                if (line.startsWith("Bước 1")) {
+                if (line.startsWith("Step 1")) {
                     contentBuilder1.append(line).append("\n");
-                } else if (line.startsWith("Bước 2")) {
+                } else if (line.startsWith("Step 2")) {
                     contentBuilder2.append(line).append("\n");
                     isFirstStep = false;
                 } else if (isFirstStep) {
