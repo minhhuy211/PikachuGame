@@ -9,12 +9,13 @@ import javax.swing.*;
 public class Main {
 	static MainPanel mainPanel;
 	static MenuPanel menuPanel;
+	static IntroductionPanel introductionPanel;
 	static JFrame frame;
 	static CardLayout cardLayout;
 	static JPanel cardPanel;
 
 	public Main() {
-		frame = new JFrame("Game Menu");
+		frame = new JFrame("Game Pikachu");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
@@ -23,9 +24,11 @@ public class Main {
 
 		menuPanel = new MenuPanel();
 		mainPanel = new MainPanel();
+		introductionPanel = new IntroductionPanel();
 
 		cardPanel.add(menuPanel, "MenuPanel");
 		cardPanel.add(mainPanel, "MainPanel");
+		cardPanel.add(introductionPanel, "IntroductionPanel");
 
 		frame.add(cardPanel);
 		frame.setVisible(true);
@@ -38,10 +41,27 @@ public class Main {
 
 			showMainFrame();
 		});
+		menuPanel.btnGuide.addActionListener(e -> {
+
+			showPanelGuide();
+		});
 		menuPanel.btnExit.addActionListener(e -> {
 
 			System.exit(0);
 		});
+		introductionPanel.getExit().addActionListener(e -> {
+			cardLayout.show(cardPanel, "MenuPanel");
+		});
+		introductionPanel.getExit1().addActionListener(e -> {
+			cardLayout.show(cardPanel, "MenuPanel");
+		});
+
+
+	}
+
+	private void showPanelGuide() {
+		 cardLayout.show(cardPanel, "IntroductionPanel");
+
 	}
 
 	private void showMainFrame() {

@@ -1,0 +1,2 @@
+Bước 1: Quan sát bảng và tìm hai hình giống nhau.
+Bước 2: Nhấp vào hình đầu tiên, sau đó nhấp vào hình thứ hai. Nếu hai hình đó biến mất thì có nghĩa bạn đã chọn thành công rồi như trong hình
